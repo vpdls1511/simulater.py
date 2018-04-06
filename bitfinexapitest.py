@@ -13,7 +13,7 @@ def coinPrice():
     dict = json.loads(data)
 
     for i in range(symbolCount):
-        print dict[i][0], ":" , float(dict[i][7])
+        print dict[i][0] + ":" + str(dict[i][7])
     print("")
 
     threading.Timer(5,coinPrice).start()

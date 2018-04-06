@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="kr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>TEST</title>
+  </head>
+  <body>
+    <div class="price-area">
+      <a href="#">BTC = {{ btc }}</a></br>
+      <a href="#">ETH = {{ eth }}</a></br>
+      <a href="#">EOS = {{ eos }}</a>
+    </div>
+  </body>
+
+  <script type="text/javascript" src="{{url_for('static', filename='script/load.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='script/jquery-3.1.1.min.js')}}"></script>
+</html>
