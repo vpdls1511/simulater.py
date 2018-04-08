@@ -3,6 +3,8 @@
 
 from flask import Flask, render_template
 import apiRequest
+import json
+import datetime
 
 app = Flask(__name__)
 values = [
@@ -13,7 +15,9 @@ values = [
     '{x:new Date(2014,08,05), y:[513.00, 516.50, 503.10, 506.35]}']
 
 apiRequest.tickers()
-apiRequest.candles("5m",":tBTCUSD/")
+date = apiRequest.candles("5m",":tBTCUSD/")
+dateSize = len(date)
+apiRequest.chart(date,dateSize)
 
 @app.route("/")
 def main():
@@ -21,7 +25,7 @@ def main():
 							,btc = apiRequest.usdData[0]
 							,eth = apiRequest.usdData[1]
 							,eos = apiRequest.usdData[2]
-                            ,value = values)
+                            ,value = apiRequest.value)
 
 if __name__ == "__main__":
 	app.run(debug='true')

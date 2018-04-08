@@ -1,9 +1,8 @@
-import json, urllib, threading, datetime
+import json, urllib, threading
 
 symbols = "tBTCUSD,tETHUSD,tEOSUSD"
 symbolCount = symbols.count("t")
 usdData = [1]*symbolCount
-value=[]
 
 def tickers():
     threading.Timer(7,tickers).start()
@@ -28,14 +27,3 @@ def candles(time,symbol):
     dict = json.loads(data)
 
     return dict
-
-def chart(date,dateSize):
-    value = [1]*dateSize
-    threading.Timer(7,inChart).start()
-    print ("Update chart data")
-    for i in range(dateSize):
-        time = datetime.datetime.fromtimestamp(int(date[i][0])/1000).strftime('%Y,%m,%d,%H,%M,%S')
-        value[i] =str( "{x:new Date(" + time + "), y:[" + str(date[i][1]) + "," + str(date[i][3]) + "," + str(date[i][4]) + "," + str(date[i][2]) + "]}" )
-    # --- open , hight, low, close --->>
-
-    return value

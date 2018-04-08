@@ -1,21 +1,21 @@
-import json
-import urllib
-import threading
+import apiRequest
+import datetime
 
-def coinPrice():
-    time = "1m:"
-    symbol = "tBTCUSD/"
+date = apiRequest.candles("5m",":tBTCUSD/")
+dateSize = len(date)
+value = [1]*dateSize
 
-    apiUrl = "https://api.bitfinex.com/v2/candles/trade:"+time+symbol+"hist"
+for i in range(dateSize):
+    value.append("{x:new Date("
+     + datetime.datetime.fromtimestamp(int(date[i][0])/1000).strftime("%Y,%m,%d %H:%M:%S") +
+     "), y:["
+     + str(date[i][1]) #open
+     + str(date[i][3]) #hight
+     + str(date[i][4]) #low
+     + str(date[i][2]) + #close
+     "]}")
 
-    jsonData = urllib.urlopen(apiUrl)
-    data = jsonData.read()
-    dict = json.loads(data)
+print value
 
-    print dict
 
-def main():
-    coinPrice()
-
-if __name__ == "__main__":
-    main()
+#{x:new Date(2014,08,01), y:[526.00, 529.45, 517.10, 519.85]}
