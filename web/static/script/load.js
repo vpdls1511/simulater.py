@@ -1,6 +1,6 @@
 setInterval(function(){
-  $(".price-area").load("/").fadeIn("slow");
+  $(".price-area").load("/.price-area").fadeIn("slow");
 },2000);
 setInterval(function(){
-  $(".chartContainer").load("/").fadeIn("slow");
+  $(".chartContainer").load("/.chartContainer").fadeIn("slow");
 },7000)
