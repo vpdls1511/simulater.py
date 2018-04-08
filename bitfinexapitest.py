@@ -3,20 +3,16 @@ import urllib
 import threading
 
 def coinPrice():
+    time = "1m:"
+    symbol = "tBTCUSD/"
 
-    symbols = "tBTCUSD,tETHUSD,tEOSUSD,tLTCUSD,tXRPUSD"
-    symbolCount = symbols.count("t")
-    apiUrl = "https://api.bitfinex.com/v2/tickers?symbols="+symbols
+    apiUrl = "https://api.bitfinex.com/v2/candles/trade:"+time+symbol+"hist"
 
     jsonData = urllib.urlopen(apiUrl)
     data = jsonData.read()
     dict = json.loads(data)
 
-    for i in range(symbolCount):
-        print dict[i][0] + ":" + str(dict[i][7])
-    print("")
-
-    threading.Timer(5,coinPrice).start()
+    print dict
 
 def main():
     coinPrice()
