@@ -10,8 +10,40 @@
       <a href="#">ETH = {{ eth }}</a></br>
       <a href="#">EOS = {{ eos }}</a>
     </div>
-  </body>
 
+    <div class="">
+    </div>
+
+    <div class="chartContainer" style="width: 100%; height: 300px"></div>
+
+  </body>
   <script type="text/javascript" src="{{url_for('static', filename='script/load.js')}}"></script>
   <script type="text/javascript" src="{{url_for('static', filename='script/jquery-3.1.1.min.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='script/jquery.canvasjs.min.js')}}"></script>
+
+  <script type="text/javascript">
+window.onload = function() {
+$(".chartContainer").CanvasJSChart({
+	axisY: {
+		includeZero: false,
+		title: "Price (INR)"
+	},
+	axisX: {
+		intervalType: "day",
+		interval: 2,
+		valueFormatString: "DD"
+	},
+	data: [
+	{
+		type: "candlestick",
+		dataPoints: [
+      {% for item in value %}
+      {{item}},
+      {% endfor %}
+		]
+	}
+	]
+});
+}
+</script>
 </html>
